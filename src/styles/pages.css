@@ -13,13 +13,18 @@
 }
 
 .home-hero-media .gallery-card img {
-  height: 180px;
+  /* Prefer aspect-ratio so images scale responsively instead of fixed heights */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
   object-fit: cover;
 }
 
-/* Adjust home page activity cards */
+/* Adjust home page activity cards - use aspect-ratio instead of fixed height */
 .card > img {
-  height: 160px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
   object-fit: cover;
 }
 
@@ -86,14 +91,15 @@
 /* Gallery Grid */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  /* use smaller min widths so items can wrap on narrow devices */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 24px;
   margin-bottom: 40px;
 }
 
 @media (max-width: 768px) {
   .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
   }
 }
@@ -282,4 +288,10 @@
   .card form > div[style*="grid-template-columns"] {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* Make home hero gallery full-width on small screens */
+@media (max-width: 600px) {
+  .home-hero-media .gallery-card { max-width: 100%; margin: 0; }
+  .gallery-container { padding: 24px 12px; }
 }

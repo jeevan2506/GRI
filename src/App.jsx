@@ -108,7 +108,7 @@ function Footer(){
         </div>
         <div style={{display:'flex', justifyContent:'space-between', marginTop:16, color:'var(--muted)'}}>
           <small>© {new Date().getFullYear()} GRI • Jain University</small>
-          <small>Built with ❤️ for rural innovation</small>
+          
         </div>
       </div>
     </footer>
