@@ -1,0 +1,135 @@
+import React, { useState } from 'react'
+import { Routes, Route, NavLink } from 'react-router-dom'
+import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiMenu, FiX } from 'react-icons/fi'
+import { AnimatePresence } from 'framer-motion'
+
+import Home from './pages/Home'
+import Activities from './pages/Activities'
+import Gallery from './pages/Gallery'
+import Team from './pages/Team'
+import Contact from './pages/Contact'
+import Participate from './pages/Participate'
+
+import PageTransition from './shared/PageTransition'
+import SectionHeading from './shared/SectionHeading'
+import logo from './assets/logo.jpeg'
+
+function Navbar(){
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
+
+  return (
+    <nav className="nav">
+      <div className="container inner">
+        <NavLink to="/" className="brand" onClick={closeMobileMenu}>
+          <img src={logo} alt="GRI Logo" className="logo" />
+          <div className="brand-text">
+            <span className="brand-mark">GRI</span>
+            <span className="brand-name">Grassroot Innovation</span>
+          </div>
+        </NavLink>
+        
+        {/* Desktop Navigation */}
+        <div className="links desktop-links">
+          <NavLink to="/activities">Activities</NavLink>
+          <NavLink to="/gallery">Gallery</NavLink>
+          <NavLink to="/team">Team</NavLink>
+          <NavLink to="/participate">Participate</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button className="mobile-menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle mobile menu">
+          {isMobileMenuOpen ? <FiX /> : <FiMenu />}
+        </button>
+
+        {/* Mobile Navigation */}
+        <div className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+          <div className="mobile-links">
+            <NavLink to="/activities" onClick={closeMobileMenu}>Activities</NavLink>
+            <NavLink to="/gallery" onClick={closeMobileMenu}>Gallery</NavLink>
+            <NavLink to="/team" onClick={closeMobileMenu}>Team</NavLink>
+            <NavLink to="/participate" onClick={closeMobileMenu}>Participate</NavLink>
+            <NavLink to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="mobile-menu-overlay" onClick={closeMobileMenu}></div>
+      )}
+    </nav>
+  )
+}
+
+function Footer(){
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="cols">
+          <div>
+            <div className="brand" style={{marginBottom:8, display:'flex', alignItems:'center', gap:8}}>
+              <img src={logo} alt="GRI Logo" className="logo" style={{width:48, height:48}} />
+              <div>
+                <span className="brand-mark">GRI</span> Grassroot Innovation
+              </div>
+            </div>
+            <small>Jain University • Bengaluru, Karnataka</small>
+            <p style={{color:'var(--muted)'}}>
+              Showcasing rural engagement, innovations, and community impact across grassroots ecosystems.
+            </p>
+          </div>
+          <div>
+            <SectionHeading title="Contact" subtitle="Reach us" />
+            <div style={{display:'grid', gap:8}}>
+              <a href="mailto:gri@jainuniversity.ac.in"><FiMail/> gri@jainuniversity.ac.in</a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><FiLinkedin/> LinkedIn</a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><FiInstagram/> Instagram</a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><FiFacebook/> Facebook</a>
+            </div>
+          </div>
+          <div>
+            <SectionHeading title="Quick links" subtitle="Navigate" />
+            <div style={{display:'grid', gap:8}}>
+              <NavLink to="/participate">Participate</NavLink>
+              <NavLink to="/gallery">Gallery</NavLink>
+              <NavLink to="/activities">Activities</NavLink>
+              <NavLink to="/team">Team</NavLink>
+            </div>
+          </div>
+        </div>
+        <div style={{display:'flex', justifyContent:'space-between', marginTop:16, color:'var(--muted)'}}>
+          <small>© {new Date().getFullYear()} GRI • Jain University</small>
+          <small>Built with ❤️ for rural innovation</small>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+export default function App(){
+  return (
+    <>
+      <Navbar />
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route index element={<PageTransition><Home/></PageTransition>} />
+          <Route path="activities" element={<PageTransition><Activities/></PageTransition>} />
+          <Route path="gallery" element={<PageTransition><Gallery/></PageTransition>} />
+          <Route path="team" element={<PageTransition><Team/></PageTransition>} />
+          <Route path="participate" element={<PageTransition><Participate/></PageTransition>} />
+          <Route path="contact" element={<PageTransition><Contact/></PageTransition>} />
+        </Routes>
+      </AnimatePresence>
+      <Footer />
+    </>
+  )
+}
