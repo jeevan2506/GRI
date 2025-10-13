@@ -12,7 +12,7 @@ export default function Home(){
       <section className="hero">
         <div>
           <div className="hero-tag">GRI • Jain University</div>
-          <h1>Grassroot Innovation for Rural Impact</h1>
+          <h1>Grassroot Research and Innovation for Rural Impact</h1>
           <p>
             We partner with rural communities to co-create sustainable solutions through research,
             student engagement, and frugal innovation. Explore our activities, projects, and impact.
