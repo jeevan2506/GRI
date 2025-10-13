@@ -32,7 +32,7 @@ function Navbar(){
           <img src={logo} alt="GRI Logo" className="logo" />
           <div className="brand-text">
             <span className="brand-mark">GRI</span>
-            <span className="brand-name">Grassroot Innovation</span>
+            <span className="brand-name">Grassroot Research and Innovation</span>
           </div>
         </NavLink>
         
