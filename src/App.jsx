@@ -79,7 +79,7 @@ function Footer(){
             <div className="brand" style={{marginBottom:8, display:'flex', alignItems:'center', gap:8}}>
               <img src={logo} alt="GRI Logo" className="logo" style={{width:48, height:48}} />
               <div>
-                <span className="brand-mark">GRI</span> Grassroot Innovation
+                <span className="brand-mark">GRI</span> Grassroot Research and Innovation
               </div>
             </div>
             <small>Jain University • Bengaluru, Karnataka</small>
