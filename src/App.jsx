@@ -9,10 +9,16 @@ import Gallery from './pages/Gallery'
 import Team from './pages/Team'
 import Contact from './pages/Contact'
 import Participate from './pages/Participate'
+import FieldVisit from './pages/FieldVisit'
+import AdminLogin from './pages/AdminLogin'
+import AdminDashboard from './pages/AdminDashboard'
 
 import PageTransition from './shared/PageTransition'
 import SectionHeading from './shared/SectionHeading'
+import NotificationIcon from './components/NotificationIcon'
+import { NotificationProvider } from './context/NotificationContext'
 import logo from './assets/logo.jpeg'
+import './styles/notifications.css'
 
 function Navbar(){
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -41,8 +47,12 @@ function Navbar(){
           <NavLink to="/activities">Activities</NavLink>
           <NavLink to="/gallery">Gallery</NavLink>
           <NavLink to="/team">Team</NavLink>
+          <NavLink to="/field-visit">Field Visits</NavLink>
           <NavLink to="/participate">Participate</NavLink>
           <NavLink to="/contact">Contact</NavLink>
+          <div className="notification-container">
+            <NotificationIcon />
+          </div>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -53,11 +63,16 @@ function Navbar(){
         {/* Mobile Navigation */}
         <div className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
           <div className="mobile-links">
+            <NavLink to="/" onClick={closeMobileMenu}>Home</NavLink>
             <NavLink to="/activities" onClick={closeMobileMenu}>Activities</NavLink>
             <NavLink to="/gallery" onClick={closeMobileMenu}>Gallery</NavLink>
             <NavLink to="/team" onClick={closeMobileMenu}>Team</NavLink>
+            <NavLink to="/field-visit" onClick={closeMobileMenu}>Field Visits</NavLink>
             <NavLink to="/participate" onClick={closeMobileMenu}>Participate</NavLink>
             <NavLink to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
+            <div className="mobile-notification">
+              <NotificationIcon />
+            </div>
           </div>
         </div>
       </div>
@@ -90,11 +105,10 @@ function Footer(){
           <div>
             <SectionHeading title="Contact" subtitle="Reach us" />
             <div style={{display:'grid', gap:8}}>
-              <a href="mailto:gri@jainuniversity.ac.in"><FiMail/> gri@jainuniversity.ac.in</a>
+              <a href="mailto:griresearch.jain@gmail.com"><FiMail/> griresearch.jain@gmail.com</a>
               <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><FiLinkedin/> LinkedIn</a>
               <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><FiInstagram/> Instagram</a>
-              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><FiFacebook/> Facebook</a>
-            </div>
+              </div>
           </div>
           <div>
             <SectionHeading title="Quick links" subtitle="Navigate" />
@@ -117,7 +131,7 @@ function Footer(){
 
 export default function App(){
   return (
-    <>
+    <NotificationProvider>
       <Navbar />
       <AnimatePresence mode="wait">
         <Routes>
@@ -126,10 +140,14 @@ export default function App(){
           <Route path="gallery" element={<PageTransition><Gallery/></PageTransition>} />
           <Route path="team" element={<PageTransition><Team/></PageTransition>} />
           <Route path="participate" element={<PageTransition><Participate/></PageTransition>} />
+          <Route path="field-visit" element={<PageTransition><FieldVisit/></PageTransition>} />
           <Route path="contact" element={<PageTransition><Contact/></PageTransition>} />
+          {/* Admin routes - hidden from normal navigation */}
+          <Route path="admin" element={<AdminLogin />} />
+          <Route path="admin/dashboard" element={<AdminDashboard />} />
         </Routes>
       </AnimatePresence>
       <Footer />
-    </>
+    </NotificationProvider>
   )
 }

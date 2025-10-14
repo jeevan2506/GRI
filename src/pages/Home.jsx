@@ -39,11 +39,7 @@ export default function Home(){
         </div>
         <div className="card about-card" style={{padding:'20px', background:'linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%)', border:'1px solid var(--border)', animation:'fadeInUp 0.6s ease-out 0.4s both'}}>
           <p style={{fontSize:'clamp(16px, 1.4vw, 18px)', lineHeight:'1.6', color:'var(--text)', margin:0, maxWidth:'800px'}}>
-            <span style={{fontSize:'clamp(18px, 1.6vw, 20px)', fontWeight:'600', color:'var(--brand)'}}>Grassroot Innovation (GRI)</span> at Jain University fosters community-led innovation by
-            bridging academic research with rural insights. We focus on sustainable, frugal
-            solutions that address local needs, while enabling students to learn through hands-on
-            immersion and co-creation.
-          </p>
+            <span style={{fontSize:'clamp(18px, 1.6vw, 20px)', fontWeight:'600', color:'var(--brand)'}}>Grassroot Innovation (GRI)</span> at Jain University serves as a vital platform that integrates academic research with valuable insights from rural communities. This initiative emphasizes the development of sustainable and cost-effective solutions tailored to address specific local challenges. By fostering active engagement and collaboration between students and community members, GRI provides a unique experiential learning environment where students gain practical knowledge through immersive, hands-on involvement and co-creation.</p>
         </div>
       </section>
 

@@ -3,20 +3,24 @@ import React from 'react'
 export default function Participate(){
   const participationWays = [
     {
-      title: 'Community Champion',
-      description: 'Bridge the gap between university research and rural communities. Help us understand local needs and facilitate workshops in your area.'
+      title: 'Digital Marketing',
+      description: 'Help promote our initiatives through social media, content creation, and online campaigns to increase awareness and engagement.'
     },
     {
-      title: 'Student Researcher', 
-      description: 'Join hands-on research projects with real-world impact. Conduct field studies, develop prototypes, and learn through rural experiences.'
+      title: 'Photography', 
+      description: 'Capture impactful moments during field visits, workshops, and community interactions to document our journey and tell compelling stories.'
     },
     {
-      title: 'Volunteer',
-      description: 'Contribute your skills to meaningful grassroot initiatives. Support workshops, documentation, and community engagement activities.'
+      title: 'Documentation',
+      description: 'Assist in creating detailed reports, case studies, and process documentation to preserve knowledge and share our learnings.'
     },
     {
-      title: 'Faculty Mentor',
-      description: 'Guide student projects and provide academic expertise. Mentor researchers and contribute domain knowledge to solutions.'
+      title: 'Designing',
+      description: 'Apply your creative skills to develop visual materials, user interfaces, and innovative solutions that address rural challenges.'
+    },
+    {
+      title: 'Technical',
+      description: 'Contribute your technical expertise to build prototypes, develop applications, and implement sustainable technological solutions.'
     }
   ]
 
@@ -47,18 +51,30 @@ export default function Participate(){
         ))}
       </div>
 
-      <div className="card" style={{padding:32, textAlign:'center', background:'linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%)', border:'2px solid var(--border)'}}>
+      <div className="card" style={{padding:32, textAlign:'center', background:'#ffffff', border:'1px solid var(--border)'}}>
         <h3 style={{fontSize:'clamp(18px, 2vw, 24px)', marginBottom:16, color:'var(--text)'}}>Ready to Get Involved?</h3>
         <p style={{fontSize:'16px', color:'var(--muted)', marginBottom:24, maxWidth:'600px', margin:'0 auto 24px'}}>
           We're always looking for passionate individuals to join our grassroot innovation community.
         </p>
-        <a 
-          className="btn" 
-          href="mailto:gri@jainuniversity.ac.in?subject=Interested in Participating&body=Hi, I'm interested in participating in GRI initiatives. Please provide more details about how I can get involved."
-          style={{fontSize:'16px', padding:'12px 24px'}}
+        <button 
+          onClick={() => window.location.href = 'mailto:gri@jainuniversity.ac.in?subject=Interested in Participating&body=Hi, I\'m interested in participating in GRI initiatives. Please provide more details about how I can get involved.'}
+          style={{
+            fontSize:'18px', 
+            padding:'14px 28px', 
+            background:'#0056b3', 
+            color:'white', 
+            textDecoration:'none', 
+            border:'none',
+            borderRadius: '4px',
+            fontWeight: 'bold',
+            display: 'inline-block',
+            margin: '0 auto',
+            cursor: 'pointer',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+          }}
         >
-          Express Interest
-        </a>
+          PARTICIPATE NOW
+        </button>
       </div>
     </div>
   )
