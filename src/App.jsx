@@ -107,7 +107,7 @@ function Footer(){
             <div style={{display:'grid', gap:8}}>
               <a href="mailto:griresearch.jain@gmail.com"><FiMail/> griresearch.jain@gmail.com</a>
               <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer"><FiLinkedin/> LinkedIn</a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><FiInstagram/> Instagram</a>
+              <a href="https://www.instagram.com/jainresearch_gri?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer"><FiInstagram/> Instagram</a>
               </div>
           </div>
           <div>
