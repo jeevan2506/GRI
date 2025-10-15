@@ -3,14 +3,14 @@ import React from 'react'
 export default function Team(){
   const facultyMembers = [
     { name: 'Dr.N.Beemkumar', role: 'Deputy Dean(R&D)' },
-    { name: 'Dr.M.Arul Prakasajothi', role: 'Ditector-Innovation (FET-JU)' },
+    { name: 'Dr.M. Arul Prakasajothi', role: 'Ditector-Innovation (FET-JU)' },
     { name: 'Dr.L.Jawahar Nesan', role: 'Chief Mentor' },
-    { name: 'Dr.Sowmya M S', role: 'Assistant Professor CSE'},
-    { name: 'Ms.Savitha R', role: 'Assistant Professor EEE'},
-    { name: 'Ms.Agashini V. Kumar', role: 'Assistant Professor CSE'},
-    { name: 'Ms.Vichitra M ', role: 'Assistant Professor Civil'},
-    { name: 'MrAnanda V.M', role: 'Technical Staff CSE' },
-    { name: 'Mr.Chandra .C', role: 'Teachnical staff ISE' },
+    { name: 'Dr. Sowmya M S', role: 'Assistant Professor CSE'},
+    { name: 'Ms. Savitha R', role: 'Assistant Professor EEE'},
+    { name: 'Ms. Agashini V. Kumar', role: 'Assistant Professor CSE'},
+    { name: 'Ms. Vichitra M ', role: 'Assistant Professor Civil'},
+    { name: 'Mr. Ananda V.M', role: 'Technical Staff CSE' },
+    { name: 'Mr. Chandra .C', role: 'Teachnical staff ISE' },
 
   ];
 
