@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { database } from '../firebase/config';
 import { ref, onValue } from 'firebase/database';
+import { homeImages } from '../assets/galleryData'
+
 
 export default function FieldVisit() {
   const [futureVisits, setFutureVisits] = useState([]);
@@ -9,11 +11,11 @@ export default function FieldVisit() {
   // Past visit you want to show
   const pastVisits = [
     {
-      title: "Devaraganhalli Village Visit",
+      title: "Devarakaggalahalli Village Visit",
       date: "2025-09-27",
-      location: "Devaraganhalli, Karnataka",
+      location: "Devarakaggalahalli, Karnataka",
       description: "We explored Raggi cultivation, Silk Worms production, and Flower production practices.",
-      image: "https://source.unsplash.com/featured/?village,agriculture" // replace with actual image if needed
+      image: "homeImages.IMG_1654" 
     }
   ];
 
