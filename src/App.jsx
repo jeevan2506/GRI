@@ -56,6 +56,28 @@ function Navbar(){
           <div className="notification-container">
             <NotificationIcon />
           </div>
+          <button
+            className="add-to-home-btn"
+            onClick={() => {
+              if (window.navigator.share) {
+                // Mobile PWA install prompt
+                window.navigator.share({
+                  title: 'GRI - Grassroot Innovation',
+                  text: 'Join our rural innovation community',
+                  url: window.location.href
+                });
+              } else {
+                // Desktop download prompt
+                const link = document.createElement('a');
+                link.href = window.location.href;
+                link.download = 'GRI - Grassroot Innovation';
+                link.click();
+              }
+            }}
+            title="Add to Home Screen / Download"
+          >
+            📱 Add to Home
+          </button>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -73,6 +95,28 @@ function Navbar(){
             <NavLink to="/field-visit" onClick={closeMobileMenu}>Field Visits</NavLink>
             <NavLink to="/participate" onClick={closeMobileMenu}>Participate</NavLink>
             <NavLink to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
+            <button
+              className="add-to-home-btn mobile-add-to-home"
+              onClick={() => {
+                if (window.navigator.share) {
+                  // Mobile PWA install prompt
+                  window.navigator.share({
+                    title: 'GRI - Grassroot Innovation',
+                    text: 'Join our rural innovation community',
+                    url: window.location.href
+                  });
+                } else {
+                  // Desktop download prompt
+                  const link = document.createElement('a');
+                  link.href = window.location.href;
+                  link.download = 'GRI - Grassroot Innovation';
+                  link.click();
+                }
+              }}
+              title="Add to Home Screen / Download"
+            >
+              📱 Add to Home
+            </button>
             <div className="mobile-notification">
               <NotificationIcon />
             </div>

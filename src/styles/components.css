@@ -103,6 +103,45 @@
   backdrop-filter: blur(2px);
 }
 
+/* Add to Home Button Styles */
+.add-to-home-btn {
+  background: linear-gradient(135deg, var(--brand) 0%, rgba(var(--brand-rgb), 0.8) 100%);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(var(--brand-rgb), 0.3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.add-to-home-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--brand-rgb), 0.4);
+  background: linear-gradient(135deg, rgba(var(--brand-rgb), 0.9) 0%, var(--brand) 100%);
+}
+
+.add-to-home-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(var(--brand-rgb), 0.3);
+}
+
+/* Mobile Add to Home Button */
+.mobile-add-to-home {
+  width: 100%;
+  justify-content: center;
+  margin: 8px 0;
+  padding: 14px 20px;
+  font-size: 16px;
+  min-height: 48px;
+}
+
 /* Mobile Responsive Breakpoints */
 @media (max-width: 768px) {
   .desktop-links { display: none; }
@@ -120,6 +159,13 @@
 
   .container { width: min(100%, 94%); }
   .mobile-links { padding: 85px 24px 24px; }
+
+  /* Mobile notification arrangement */
+  .mobile-notification {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
 }
 
 @media (max-width: 480px) {

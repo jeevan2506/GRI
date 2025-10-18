@@ -173,8 +173,8 @@ export default function Home(){
             </div>
             
             <h3 style={{
-              fontSize: 'clamp(28px, 4vw, 42px)',
-              fontWeight: '800',
+              fontSize: 'clamp(18px, 2vw, 24px)',
+              fontWeight: '600',
               marginBottom: '25px',
               background: 'linear-gradient(to right, var(--brand), rgba(var(--brand-rgb), 0.7))',
               WebkitBackgroundClip: 'text',
@@ -185,10 +185,10 @@ export default function Home(){
             }}>
               Transforming Rural Communities Through Innovation
             </h3>
-            
+
             <p style={{
-              fontSize: 'clamp(17px, 1.8vw, 20px)',
-              lineHeight: '1.8',
+              fontSize: 'clamp(14px, 1.2vw, 16px)',
+              lineHeight: '1.6',
               marginBottom: '35px',
               color: 'var(--text)',
               maxWidth: '800px',
