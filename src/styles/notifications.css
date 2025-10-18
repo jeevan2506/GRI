@@ -51,6 +51,17 @@
   margin-top: 8px;
 }
 
+/* Mobile Notification Dropdown */
+@media (max-width: 768px) {
+  .notification-dropdown {
+    width: calc(100vw - 32px);
+    max-width: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
+}
+
 /* Notification Header */
 .notification-header {
   display: flex;

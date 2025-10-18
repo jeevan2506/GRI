@@ -28,6 +28,13 @@
 .desktop-links a:hover::after, .desktop-links a.active::after{ width:80%; }
 .desktop-links a.active{ color: var(--brand); font-weight: 600; background: rgba(0,0,0,0.03); }
 
+/* Mobile Nav Right */
+.mobile-nav-right {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
 /* Mobile Menu Toggle */
 .mobile-menu-toggle{
   display: none;
@@ -145,6 +152,7 @@
 /* Mobile Responsive Breakpoints */
 @media (max-width: 768px) {
   .desktop-links { display: none; }
+  .mobile-nav-right { display: flex; }
   .mobile-menu-toggle { display: block; }
   .mobile-menu { display: block; }
 

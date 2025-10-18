@@ -61,9 +61,14 @@ function Navbar(){
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button className="mobile-menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle mobile menu">
-          {isMobileMenuOpen ? <FiX /> : <FiMenu />}
-        </button>
+        <div className="mobile-nav-right">
+          <div className="notification-container mobile-navbar-notification">
+            <NotificationIcon />
+          </div>
+          <button className="mobile-menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle mobile menu">
+            {isMobileMenuOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
 
         {/* Mobile Navigation */}
         <div className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
@@ -77,9 +82,6 @@ function Navbar(){
             <NavLink to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
             <div className="mobile-add-to-home-wrapper">
               <AddToHomeScreen />
-            </div>
-            <div className="mobile-notification">
-              <NotificationIcon />
             </div>
           </div>
         </div>
