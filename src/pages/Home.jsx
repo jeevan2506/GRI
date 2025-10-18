@@ -94,129 +94,210 @@ export default function Home(){
         </div>
       </section>
 
-      <section>
+      <section className="website-highlight">
         <div className="section-heading">
           <div>
-            <small style={{color:'var(--muted)'}}>Our Impact</small>
-            <h2>Key Achievements</h2>
+            <small style={{color:'var(--muted)'}}>Discover</small>
+            <h2>GRI Highlights</h2>
           </div>
         </div>
-        <div style={{
-          display:'grid', 
-          gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))', 
-          gap:'25px', 
-          marginTop:'20px',
-          perspective: '1000px'
+        
+        <div className="highlight-container" style={{
+          position: 'relative',
+          overflow: 'hidden',
+          borderRadius: '16px',
+          boxShadow: '0 15px 50px rgba(0,0,0,0.1)',
+          margin: '20px 0',
+          background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
+          height: '400px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}>
-          {[
-            {number:'10+', label:'Rural Communities Engaged', icon:'🏘️', color:'#4e7aef'},
-            {number:'25+', label:'Student-Led Projects', icon:'🎓', color:'#e74694'},
-            {number:'5+', label:'Implemented Solutions', icon:'✅', color:'#3cba92'},
-            {number:'1000+', label:'Community Interactions', icon:'🤝', color:'#f5b942'}
-          ].map((stat, i) => (
-            <div key={i} style={{
-              background:`linear-gradient(135deg, white 0%, #f8f9fa 100%)`, 
-              padding:'32px 24px', 
-              borderRadius:'16px', 
-              textAlign:'center', 
-              boxShadow:`0 10px 30px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03)`, 
-              border:`1px solid var(--border)`, 
-              transition:'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-              transform: `translateY(0) rotateY(0)`,
-              position: 'relative',
-              overflow: 'hidden',
-              animation: `fadeInUp 0.6s ease-out ${0.2 + i * 0.15}s both`
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-10px) rotateY(5deg)';
-              e.currentTarget.style.boxShadow = `0 20px 40px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.05), 0 0 20px rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.2)`;
-              e.currentTarget.style.borderColor = stat.color;
-              e.currentTarget.style.background = `linear-gradient(135deg, white 0%, #f8f9fa 80%, rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.05) 100%)`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) rotateY(0)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03)';
-              e.currentTarget.style.borderColor = 'var(--border)';
-              e.currentTarget.style.background = 'linear-gradient(135deg, white 0%, #f8f9fa 100%)';
-            }}
-            >
-              <div style={{
+          {/* Animated background elements */}
+          <div className="animated-bg" style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 0,
+            overflow: 'hidden'
+          }}>
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="floating-circle" style={{
                 position: 'absolute',
-                top: '-20px',
-                right: '-20px',
-                width: '120px',
-                height: '120px',
-                background: `radial-gradient(circle, rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.1) 0%, rgba(255,255,255,0) 70%)`,
+                width: `${Math.random() * 100 + 50}px`,
+                height: `${Math.random() * 100 + 50}px`,
                 borderRadius: '50%',
-                zIndex: '0',
-                transition: 'all 0.5s ease'
+                background: `rgba(var(--brand-rgb), ${Math.random() * 0.1 + 0.05})`,
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animation: `float ${Math.random() * 10 + 15}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 5}s`,
+                opacity: Math.random() * 0.5 + 0.3,
+                transform: 'scale(1)',
+                zIndex: 1
               }}></div>
-              <div style={{
-                fontSize:'42px', 
-                marginBottom:'16px',
-                background: `linear-gradient(135deg, ${stat.color} 0%, rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.7) 100%)`,
-                width: '80px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: '24px',
-                margin: '0 auto 20px',
-                boxShadow: `0 10px 20px rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.2)`,
-                color: 'white',
-                transform: 'rotate(0deg)',
-                transition: 'all 0.5s ease',
-                position: 'relative',
-                zIndex: '1'
-              }}
-              className="achievement-icon"
-              >{stat.icon}</div>
-              <div style={{
-                fontSize:'clamp(32px, 3.5vw, 42px)', 
-                fontWeight:'800', 
-                background: `linear-gradient(to right, ${stat.color}, rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.7))`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                marginBottom: '10px',
-                position: 'relative',
-                display: 'inline-block',
-                textShadow: '0 2px 10px rgba(0,0,0,0.05)',
-                transition: 'all 0.3s ease',
-                zIndex: '1'
-              }}
-              className="achievement-number"
-              >
-                {stat.number}
-              </div>
-              <div style={{
-                fontSize:'16px', 
-                fontWeight: '600',
-                color:'var(--text)',
-                marginTop: '10px',
-                position: 'relative',
-                zIndex: '1',
-                transition: 'all 0.3s ease',
-                padding: '0 10px'
-              }}>{stat.label}</div>
-              <div style={{
-                position: 'absolute',
-                bottom: '0',
-                left: '0',
-                width: '100%',
-                height: '5px',
-                background: stat.color,
-                transform: 'scaleX(0)',
-                transformOrigin: 'left',
-                transition: 'transform 0.5s ease',
-                zIndex: '0'
-              }}
-              className="achievement-underline"
-              ></div>
+            ))}
+          </div>
+          
+          {/* Main content */}
+          <div className="highlight-content" style={{
+            position: 'relative',
+            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '40px',
+            textAlign: 'center',
+            maxWidth: '800px'
+          }}>
+            <div className="highlight-icon" style={{
+              fontSize: '48px',
+              marginBottom: '20px',
+              background: 'linear-gradient(135deg, var(--brand) 0%, rgba(var(--brand-rgb), 0.7) 100%)',
+              width: '100px',
+              height: '100px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '50%',
+              color: 'white',
+              boxShadow: '0 10px 30px rgba(var(--brand-rgb), 0.3)',
+              animation: 'pulse 2s infinite'
+            }}>
+              🌱
             </div>
-          ))}
+            
+            <h3 style={{
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontWeight: '800',
+              marginBottom: '20px',
+              background: 'linear-gradient(to right, var(--brand), rgba(var(--brand-rgb), 0.7))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              animation: 'shimmer 3s infinite'
+            }}>
+              Transforming Rural Communities Through Innovation
+            </h3>
+            
+            <p style={{
+              fontSize: 'clamp(16px, 1.5vw, 18px)',
+              lineHeight: '1.7',
+              marginBottom: '30px',
+              color: 'var(--text)',
+              maxWidth: '700px'
+            }}>
+              GRI connects academic expertise with rural wisdom to create sustainable, impactful solutions. 
+              Our collaborative approach has engaged 10+ communities, launched 25+ student projects, 
+              and implemented 5+ solutions through 1000+ meaningful interactions.
+            </p>
+            
+            <div className="cta-buttons" style={{
+              display: 'flex',
+              gap: '15px',
+              flexWrap: 'wrap',
+              justifyContent: 'center'
+            }}>
+              <Link to="/projects" className="highlight-btn primary" style={{
+                display: 'inline-block',
+                padding: '12px 24px',
+                background: 'linear-gradient(135deg, var(--brand) 0%, rgba(var(--brand-rgb), 0.8) 100%)',
+                color: 'white',
+                borderRadius: '8px',
+                fontWeight: '600',
+                textDecoration: 'none',
+                boxShadow: '0 5px 15px rgba(var(--brand-rgb), 0.3)',
+                transition: 'all 0.3s ease',
+                border: 'none',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <span style={{ position: 'relative', zIndex: 2 }}>Explore Projects</span>
+                <div className="btn-shine" style={{
+                  position: 'absolute',
+                  top: '-50%',
+                  left: '-50%',
+                  width: '200%',
+                  height: '200%',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%)',
+                  transform: 'rotate(45deg)',
+                  transition: 'all 0.5s ease',
+                  zIndex: 1
+                }}></div>
+              </Link>
+              
+              <Link to="/participate" className="highlight-btn secondary" style={{
+                display: 'inline-block',
+                padding: '12px 24px',
+                background: 'transparent',
+                color: 'var(--brand)',
+                borderRadius: '8px',
+                fontWeight: '600',
+                textDecoration: 'none',
+                boxShadow: '0 0 0 2px var(--brand)',
+                transition: 'all 0.3s ease'
+              }}>
+                Get Involved
+              </Link>
+            </div>
+          </div>
         </div>
+        
         <style jsx>{`
-          @keyframes fadeInUp {
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0) scale(1);
+            }
+            50% {
+              transform: translateY(-20px) scale(1.1);
+            }
+          }
+          
+          @keyframes pulse {
+            0% {
+              transform: scale(1);
+              box-shadow: 0 10px 30px rgba(var(--brand-rgb), 0.3);
+            }
+            50% {
+              transform: scale(1.05);
+              box-shadow: 0 15px 40px rgba(var(--brand-rgb), 0.4);
+            }
+            100% {
+              transform: scale(1);
+              box-shadow: 0 10px 30px rgba(var(--brand-rgb), 0.3);
+            }
+          }
+          
+          @keyframes shimmer {
+            0% {
+              background-position: -100% 0;
+            }
+            100% {
+              background-position: 200% 0;
+            }
+          }
+          
+          .highlight-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(var(--brand-rgb), 0.5);
+          }
+          
+          .highlight-btn.primary:hover .btn-shine {
+            left: 100%;
+          }
+          
+          .highlight-btn.secondary:hover {
+            background: rgba(var(--brand-rgb), 0.1);
+            transform: translateY(-3px);
+          }
+          
+          .highlight-content {
+            animation: fadeIn 1s ease-out;
+          }
+          
+          @keyframes fadeIn {
             from {
               opacity: 0;
               transform: translateY(20px);
@@ -225,18 +306,6 @@ export default function Home(){
               opacity: 1;
               transform: translateY(0);
             }
-          }
-          
-          div:hover .achievement-icon {
-            transform: rotate(10deg) scale(1.05);
-          }
-          
-          div:hover .achievement-number {
-            transform: scale(1.1);
-          }
-          
-          div:hover .achievement-underline {
-            transform: scaleX(1);
           }
         `}</style>
       </section>
