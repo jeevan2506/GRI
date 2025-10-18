@@ -236,7 +236,6 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 0 20px 10px;
-  border-bottom: 2px solid var(--brand);
 }
 
 .faculty-grid, .honourable-grid {
@@ -264,7 +263,7 @@
 }
 
 .faculty-color-bar, .honourable-color-bar {
-  height: 8px;
+  height: 0px;
   background: var(--brand);
   width: 100%;
 }
