@@ -15,7 +15,7 @@ export default function FieldVisit() {
       date: "2023-09-15",
       location: "Devarakaggalahalli, Karnataka",
       description: "Our team explored local agricultural practices including Ragi cultivation, silk worm production, and flower cultivation. We engaged with farmers to understand traditional farming techniques and challenges faced by the community.",
-      image: homeImages[4].src,
+      image: homeImages[0].src,
       highlights: [
         "Documented traditional Ragi cultivation methods",
         "Studied silk worm rearing practices",
@@ -27,7 +27,7 @@ export default function FieldVisit() {
       date: "2023-10-22",
       location: "Jain University Rural Campus",
       description: "A collaborative workshop with community members to identify key challenges and co-create potential solutions using frugal innovation approaches. Students and faculty worked alongside village representatives.",
-      image: homeImages[2].src,
+      image: homeImages[1].src,
       highlights: [
         "Identified 8 key rural challenges",
         "Formed 5 student-community innovation teams",
