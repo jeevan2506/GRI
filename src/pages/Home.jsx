@@ -105,14 +105,17 @@ export default function Home(){
         <div className="highlight-container" style={{
           position: 'relative',
           overflow: 'hidden',
-          borderRadius: '16px',
-          boxShadow: '0 15px 50px rgba(0,0,0,0.1)',
-          margin: '20px 0',
+          borderRadius: '20px',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+          margin: '30px auto',
           background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
-          height: '400px',
+          minHeight: '500px',
+          maxWidth: '1200px',
+          width: '90%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          padding: '40px 20px'
         }}>
           {/* Animated background elements */}
           <div className="animated-bg" style={{
@@ -124,18 +127,18 @@ export default function Home(){
             zIndex: 0,
             overflow: 'hidden'
           }}>
-            {[...Array(5)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <div key={i} className="floating-circle" style={{
                 position: 'absolute',
-                width: `${Math.random() * 100 + 50}px`,
-                height: `${Math.random() * 100 + 50}px`,
+                width: `${Math.random() * 120 + 60}px`,
+                height: `${Math.random() * 120 + 60}px`,
                 borderRadius: '50%',
-                background: `rgba(var(--brand-rgb), ${Math.random() * 0.1 + 0.05})`,
+                background: `rgba(var(--brand-rgb), ${Math.random() * 0.15 + 0.05})`,
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
                 animation: `float ${Math.random() * 10 + 15}s ease-in-out infinite`,
                 animationDelay: `${Math.random() * 5}s`,
-                opacity: Math.random() * 0.5 + 0.3,
+                opacity: Math.random() * 0.6 + 0.3,
                 transform: 'scale(1)',
                 zIndex: 1
               }}></div>
@@ -149,45 +152,50 @@ export default function Home(){
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '40px',
+            padding: '40px 20px',
             textAlign: 'center',
-            maxWidth: '800px'
+            maxWidth: '900px',
+            width: '100%'
           }}>
             <div className="highlight-icon" style={{
-              fontSize: '48px',
-              marginBottom: '20px',
+              fontSize: '56px',
+              marginBottom: '30px',
               background: 'linear-gradient(135deg, var(--brand) 0%, rgba(var(--brand-rgb), 0.7) 100%)',
-              width: '100px',
-              height: '100px',
+              width: '120px',
+              height: '120px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: '50%',
               color: 'white',
-              boxShadow: '0 10px 30px rgba(var(--brand-rgb), 0.3)',
-              animation: 'pulse 2s infinite'
+              boxShadow: '0 15px 35px rgba(var(--brand-rgb), 0.4)',
+              animation: 'pulse 2.5s infinite',
+              transition: 'transform 0.3s ease'
             }}>
               🌱
             </div>
             
             <h3 style={{
-              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontSize: 'clamp(28px, 4vw, 42px)',
               fontWeight: '800',
-              marginBottom: '20px',
+              marginBottom: '25px',
               background: 'linear-gradient(to right, var(--brand), rgba(var(--brand-rgb), 0.7))',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              animation: 'shimmer 3s infinite'
+              animation: 'shimmer 3s infinite',
+              letterSpacing: '-0.5px',
+              lineHeight: '1.2'
             }}>
               Transforming Rural Communities Through Innovation
             </h3>
             
             <p style={{
-              fontSize: 'clamp(16px, 1.5vw, 18px)',
-              lineHeight: '1.7',
-              marginBottom: '30px',
+              fontSize: 'clamp(17px, 1.8vw, 20px)',
+              lineHeight: '1.8',
+              marginBottom: '35px',
               color: 'var(--text)',
-              maxWidth: '700px'
+              maxWidth: '800px',
+              padding: '0 15px'
             }}>
               GRI connects academic expertise with rural wisdom to create sustainable, impactful solutions. 
               Our collaborative approach has engaged 10+ communities, launched 25+ student projects, 
@@ -196,19 +204,21 @@ export default function Home(){
             
             <div className="cta-buttons" style={{
               display: 'flex',
-              gap: '15px',
+              gap: '25px',
               flexWrap: 'wrap',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              marginTop: '10px'
             }}>
               <Link to="/projects" className="highlight-btn primary" style={{
                 display: 'inline-block',
-                padding: '12px 24px',
+                padding: '15px 30px',
                 background: 'linear-gradient(135deg, var(--brand) 0%, rgba(var(--brand-rgb), 0.8) 100%)',
                 color: 'white',
-                borderRadius: '8px',
+                borderRadius: '12px',
                 fontWeight: '600',
+                fontSize: '17px',
                 textDecoration: 'none',
-                boxShadow: '0 5px 15px rgba(var(--brand-rgb), 0.3)',
+                boxShadow: '0 8px 25px rgba(var(--brand-rgb), 0.3)',
                 transition: 'all 0.3s ease',
                 border: 'none',
                 position: 'relative',
@@ -230,11 +240,12 @@ export default function Home(){
               
               <Link to="/participate" className="highlight-btn secondary" style={{
                 display: 'inline-block',
-                padding: '12px 24px',
+                padding: '15px 30px',
                 background: 'transparent',
                 color: 'var(--brand)',
-                borderRadius: '8px',
+                borderRadius: '12px',
                 fontWeight: '600',
+                fontSize: '17px',
                 textDecoration: 'none',
                 boxShadow: '0 0 0 2px var(--brand)',
                 transition: 'all 0.3s ease'
