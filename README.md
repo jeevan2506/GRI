@@ -41,7 +41,3 @@ A modern, responsive portfolio website for the Grassroot Innovation (GRI) progra
 Ready for deployment on Vercel with included configuration files.
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
-
-## 📄 License
-
-© 2024 GRI • Jain University. Built with ❤️ for rural innovation.
