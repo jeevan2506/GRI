@@ -1,0 +1,61 @@
+/* Add to Home Screen Styles */
+
+/* Mobile add to home wrapper */
+.mobile-add-to-home-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+/* iOS Install Prompt */
+.ios-install-prompt {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  z-index: 1000;
+  border: 1px solid var(--border);
+}
+
+.ios-install-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ios-install-content strong {
+  color: var(--text);
+  font-size: 16px;
+}
+
+.ios-install-content p {
+  margin: 4px 0 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.ios-close-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ios-close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text);
+}

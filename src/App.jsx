@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route, NavLink } from 'react-router-dom'
-import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiMenu, FiX } from 'react-icons/fi'
+import { FiFacebook, FiInstagram, FiLinkedin, FiMail, FiMenu, FiX, FiDownload } from 'react-icons/fi'
 import { AnimatePresence } from 'framer-motion'
 
 import Home from './pages/Home'
@@ -17,6 +17,7 @@ import AdminDashboard from './pages/AdminDashboard'
 import PageTransition from './shared/PageTransition'
 import SectionHeading from './shared/SectionHeading'
 import NotificationIcon from './components/NotificationIcon'
+import AddToHomeScreen from './components/AddToHomeScreen'
 import { NotificationProvider } from './context/NotificationContext'
 import logo from './assets/logo.jpeg'
 import jgiLogo from './assets/jgi_logo.png'
@@ -56,28 +57,7 @@ function Navbar(){
           <div className="notification-container">
             <NotificationIcon />
           </div>
-          <button
-            className="add-to-home-btn"
-            onClick={() => {
-              if (window.navigator.share) {
-                // Mobile PWA install prompt
-                window.navigator.share({
-                  title: 'GRI - Grassroot Innovation',
-                  text: 'Join our rural innovation community',
-                  url: window.location.href
-                });
-              } else {
-                // Desktop download prompt
-                const link = document.createElement('a');
-                link.href = window.location.href;
-                link.download = 'GRI - Grassroot Innovation';
-                link.click();
-              }
-            }}
-            title="Add to Home Screen / Download"
-          >
-            📱 Add to Home
-          </button>
+          <AddToHomeScreen />
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -95,28 +75,9 @@ function Navbar(){
             <NavLink to="/field-visit" onClick={closeMobileMenu}>Field Visits</NavLink>
             <NavLink to="/participate" onClick={closeMobileMenu}>Participate</NavLink>
             <NavLink to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
-            <button
-              className="add-to-home-btn mobile-add-to-home"
-              onClick={() => {
-                if (window.navigator.share) {
-                  // Mobile PWA install prompt
-                  window.navigator.share({
-                    title: 'GRI - Grassroot Innovation',
-                    text: 'Join our rural innovation community',
-                    url: window.location.href
-                  });
-                } else {
-                  // Desktop download prompt
-                  const link = document.createElement('a');
-                  link.href = window.location.href;
-                  link.download = 'GRI - Grassroot Innovation';
-                  link.click();
-                }
-              }}
-              title="Add to Home Screen / Download"
-            >
-              📱 Add to Home
-            </button>
+            <div className="mobile-add-to-home-wrapper">
+              <AddToHomeScreen />
+            </div>
             <div className="mobile-notification">
               <NotificationIcon />
             </div>
