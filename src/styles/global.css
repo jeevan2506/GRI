@@ -3,6 +3,7 @@
   --bg: #f7f7f8;
   --panel: #ffffff;
   --brand: #111111; /* primary, near-black */
+  --brand-rgb: 17, 17, 17; /* RGB values for brand color */
   --brand-2: #4b5563; /* gray-600 */
   --text: #111111;
   --muted: #6b7280; /* gray-500/600 */
