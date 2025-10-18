@@ -10,6 +10,7 @@ import Team from './pages/Team'
 import Contact from './pages/Contact'
 import Participate from './pages/Participate'
 import FieldVisit from './pages/FieldVisit'
+import FieldVisitDetail from './pages/FieldVisitDetail'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
 
@@ -141,6 +142,7 @@ export default function App(){
           <Route path="team" element={<PageTransition><Team/></PageTransition>} />
           <Route path="participate" element={<PageTransition><Participate/></PageTransition>} />
           <Route path="field-visit" element={<PageTransition><FieldVisit/></PageTransition>} />
+          <Route path="fieldvisit/:id" element={<PageTransition><FieldVisitDetail/></PageTransition>} />
           <Route path="contact" element={<PageTransition><Contact/></PageTransition>} />
           {/* Admin routes - hidden from normal navigation */}
           <Route path="admin" element={<AdminLogin />} />

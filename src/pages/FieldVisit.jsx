@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { database } from '../firebase/config';
 import { ref, onValue } from 'firebase/database';
-import { homeImages } from '../assets/galleryData'
+import { homeImages } from '../assets/galleryData';
+import { Link } from 'react-router-dom';
 
+// Export pastVisits for use in FieldVisitDetail
+export const pastVisits = [
+  {
+    title: "Devarakaggalahalli Village Visit",
+    date: "2023-09-15",
+    location: "Devarakaggalahalli, Karnataka",
+    description: "Our team explored local agricultural practices including Ragi cultivation, silk worm production, and flower cultivation. We engaged with farmers to understand traditional farming techniques and challenges faced by the community.",
+    image: homeImages[0].src,
+    reportPath: "c:\\Users\\Admin\\Downloads\\GRI\\Report on GRI Visit 1.docx",
+    highlights: [
+      "Documented traditional Ragi cultivation methods",
+      "Studied silk worm rearing practices",
+      "Analyzed local flower production supply chain"
+    ]
+  }
+];
 
 export default function FieldVisit() {
   const [futureVisits, setFutureVisits] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Past visits from the GRI Visit Report
-  const pastVisits = [
-    {
-      title: "Devarakaggalahalli Village Visit",
-      date: "2023-09-15",
-      location: "Devarakaggalahalli, Karnataka",
-      description: "Our team explored local agricultural practices including Ragi cultivation, silk worm production, and flower cultivation. We engaged with farmers to understand traditional farming techniques and challenges faced by the community.",
-      image: homeImages[0].src,
-      reportPath: "c:\\Users\\Admin\\Downloads\\GRI\\Report on GRI Visit 1.docx",
-      highlights: [
-        "Documented traditional Ragi cultivation methods",
-        "Studied silk worm rearing practices",
-        "Analyzed local flower production supply chain"
-      ]
-    }
-  ];
 
   useEffect(() => {
     const visitsRef = ref(database, 'fieldVisits');
@@ -213,42 +213,39 @@ export default function FieldVisit() {
                   <div style={{marginTop: '15px'}}>
                     <h5 style={{fontSize: '16px', marginBottom: '10px', color: 'var(--brand)'}}>Key Highlights:</h5>
                     <ul style={{paddingLeft: '20px', margin: '0'}}>
-                      {visit.highlights.map((highlight, i) => (
-                        <li key={i} style={{marginBottom: '5px', fontSize: '14px'}}>{highlight}</li>
+                      {visit.highlights.map((highlight, index) => (
+                        <li key={index}>{highlight}</li>
                       ))}
                     </ul>
-                  </div>
-                )}
-                
-                {visit.reportPath && (
-                  <div style={{marginTop: '20px', textAlign: 'center'}}>
-                    <a 
-                      href={visit.reportPath} 
-                      download="GRI_Visit_Report.docx"
-                      style={{
-                        display: 'inline-block',
-                        background: 'linear-gradient(135deg, var(--brand) 0%, rgba(var(--brand-rgb), 0.8) 100%)',
-                        color: 'white',
-                        padding: '10px 20px',
-                        borderRadius: '8px',
-                        textDecoration: 'none',
-                        fontWeight: '600',
-                        boxShadow: '0 4px 15px rgba(var(--brand-rgb), 0.3)',
-                        transition: 'all 0.3s ease',
-                        border: 'none',
-                        cursor: 'pointer'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-3px)';
-                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(var(--brand-rgb), 0.4)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(var(--brand-rgb), 0.3)';
-                      }}
-                    >
-                      <span style={{marginRight: '8px'}}>📄</span> Know More
-                    </a>
+                    
+                    {visit.reportPath && (
+                      <div style={{marginTop: '20px', textAlign: 'center'}}>
+                        <Link to={`/fieldvisit/${index}`} style={{
+                          display: 'inline-block',
+                          background: 'linear-gradient(135deg, var(--brand) 0%, rgba(var(--brand-rgb), 0.8) 100%)',
+                          color: 'white',
+                          padding: '10px 20px',
+                          borderRadius: '8px',
+                          textDecoration: 'none',
+                          fontWeight: '600',
+                          boxShadow: '0 4px 15px rgba(var(--brand-rgb), 0.3)',
+                          transition: 'all 0.3s ease',
+                          border: 'none',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-3px)';
+                          e.currentTarget.style.boxShadow = '0 8px 20px rgba(var(--brand-rgb), 0.4)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.boxShadow = '0 4px 15px rgba(var(--brand-rgb), 0.3)';
+                        }}
+                      >
+                        <span style={{marginRight: '8px'}}>📄</span> Know More
+                      </Link>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
