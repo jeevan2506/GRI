@@ -19,6 +19,7 @@ import SectionHeading from './shared/SectionHeading'
 import NotificationIcon from './components/NotificationIcon'
 import { NotificationProvider } from './context/NotificationContext'
 import logo from './assets/logo.jpeg'
+import jgiLogo from './assets/jgi_logo.png'
 import './styles/notifications.css'
 
 function Navbar(){
@@ -36,7 +37,8 @@ function Navbar(){
     <nav className="nav">
       <div className="container inner">
         <NavLink to="/" className="brand" onClick={closeMobileMenu}>
-          <img src={logo} alt="GRI Logo" className="logo" />
+          <img src={jgiLogo} alt="JGI Logo" className="logo jgi-logo" />
+          <img src={logo} alt="GRI Logo" className="logo gri-logo" />
           <div className="brand-text">
             <span className="brand-mark">GRI</span>
             <span className="brand-name">Grassroot Research and Innovation</span>
