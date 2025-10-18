@@ -23,7 +23,6 @@ export const pastVisits = [
 
 export default function FieldVisit() {
   const [futureVisits, setFutureVisits] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const visitsRef = ref(database, 'fieldVisits');
@@ -39,19 +38,10 @@ export default function FieldVisit() {
 
         setFutureVisits(future);
       }
-      setLoading(false);
     }, {
       onlyOnce: true
     });
   }, []);
-
-  if (loading) {
-    return (
-      <div style={{ textAlign: 'center', padding: '50px' }}>
-        <h2>Loading field visits...</h2>
-      </div>
-    );
-  }
 
   return (
     <div style={{ padding: '20px 0' }}>

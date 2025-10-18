@@ -31,7 +31,7 @@ export default function Team(){
 
       {/* Honourable Members Section */}
       <div className="honourable-section">
-        <h3>Our Memtors</h3>
+        <h3>Our Mentors</h3>
 
         <div className="honourable-grid">
           {honourableMembers.map((member, index) => (
