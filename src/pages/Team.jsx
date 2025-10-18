@@ -10,10 +10,10 @@ export default function Team(){
 
   const honourableMembers = [
 
-    { name: 'Prof. Anjula Gurtoo', role: 'Professor & Chair, Lab for Sustainable Solutions Department of Management Studies, Indian Institute of Science, Bangalore', image: '/src/assets/chair4.jpg' },
-    { name: 'Dr. K. Elangovan ', role: 'Assistant Innovation Director, Innovation Cell Ministry of Education', image: '/src/assets/chair1.jpg' },
-    { name: 'Dr. Gurubalan Annadurai ', role: 'Assistant Professor, Department of Energy Science and Engineering(IIT Bombay)', image: '/src/assets/chair2.png' },
-    { name: 'Mr. K. S. Rajamanokar ', role: 'CEO of Aquaconnect, Chennai', image: '/src/assets/chair3.jpg' },
+    { name: 'Prof. Anjula Gurtoo', role: 'Honorary chair of GRI and Professor & Chair, Lab for Sustainable Solutions Department of Management Studies, Indian Institute of Science, Bangalore', image: '/src/assets/chair4.jpg' },
+    { name: 'Dr. K. Elangovan ', role: 'Honorary Member of GRI and Assistant Innovation Director, Innovation Cell Ministry of Education', image: '/src/assets/chair1.jpg' },
+    { name: 'Dr. Gurubalan Annadurai ', role: 'Honorary Member of GRI and Assistant Professor, Department of Energy Science and Engineering(IIT Bombay)', image: '/src/assets/chair2.png' },
+    { name: 'Mr. K. S. Rajamanokar ', role: 'Honorary Member of GRI and CEO of Aquaconnect, Chennai', image: '/src/assets/chair3.jpg' },
     { name: 'Dr.M. Arul Prakasajothi', role: 'Chair Member and Director – Innovation, JAIN University', image: '/src/assets/arulsir.png' },
     { name: 'Dr.N. Beemkumar', role: 'Co-Chair Member and Deputy Dean (Research), JAIN University', image: '/src/assets/beemsir.jpg' }, 
   ];
@@ -31,7 +31,7 @@ export default function Team(){
 
       {/* Honourable Members Section */}
       <div className="honourable-section">
-        <h3>Our Honourable Members</h3>
+        <h3>Our Memtors</h3>
 
         <div className="honourable-grid">
           {honourableMembers.map((member, index) => (
