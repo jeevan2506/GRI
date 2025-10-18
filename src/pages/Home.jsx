@@ -101,78 +101,144 @@ export default function Home(){
             <h2>Key Achievements</h2>
           </div>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))', gap:'20px', marginTop:'10px'}}>
+        <div style={{
+          display:'grid', 
+          gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))', 
+          gap:'25px', 
+          marginTop:'20px',
+          perspective: '1000px'
+        }}>
           {[
-            {number:'10+', label:'Rural Communities Engaged', icon:'🏘️'},
-            {number:'25+', label:'Student-Led Projects', icon:'🎓'},
-            {number:'5+', label:'Implemented Solutions', icon:'✅'},
-            {number:'1000+', label:'Community Interactions', icon:'🤝'}
+            {number:'10+', label:'Rural Communities Engaged', icon:'🏘️', color:'#4e7aef'},
+            {number:'25+', label:'Student-Led Projects', icon:'🎓', color:'#e74694'},
+            {number:'5+', label:'Implemented Solutions', icon:'✅', color:'#3cba92'},
+            {number:'1000+', label:'Community Interactions', icon:'🤝', color:'#f5b942'}
           ].map((stat, i) => (
             <div key={i} style={{
-              background:'linear-gradient(135deg, white 0%, #f8f9fa 100%)', 
-              padding:'28px', 
-              borderRadius:'12px', 
+              background:`linear-gradient(135deg, white 0%, #f8f9fa 100%)`, 
+              padding:'32px 24px', 
+              borderRadius:'16px', 
               textAlign:'center', 
-              boxShadow:'0 8px 20px rgba(0,0,0,0.08)', 
-              border:'1px solid var(--border)', 
-              transition:'all 0.4s ease',
-              transform: 'translateY(0)',
+              boxShadow:`0 10px 30px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03)`, 
+              border:`1px solid var(--border)`, 
+              transition:'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              transform: `translateY(0) rotateY(0)`,
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              animation: `fadeInUp 0.6s ease-out ${0.2 + i * 0.15}s both`
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-8px)';
-              e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.12)';
-              e.currentTarget.style.borderColor = 'rgba(var(--brand-rgb), 0.3)';
+              e.currentTarget.style.transform = 'translateY(-10px) rotateY(5deg)';
+              e.currentTarget.style.boxShadow = `0 20px 40px rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.05), 0 0 20px rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.2)`;
+              e.currentTarget.style.borderColor = stat.color;
+              e.currentTarget.style.background = `linear-gradient(135deg, white 0%, #f8f9fa 80%, rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.05) 100%)`;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
+              e.currentTarget.style.transform = 'translateY(0) rotateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03)';
               e.currentTarget.style.borderColor = 'var(--border)';
+              e.currentTarget.style.background = 'linear-gradient(135deg, white 0%, #f8f9fa 100%)';
             }}
             >
               <div style={{
-                fontSize:'36px', 
-                marginBottom:'12px',
-                background: 'rgba(var(--brand-rgb), 0.05)',
-                width: '70px',
-                height: '70px',
+                position: 'absolute',
+                top: '-20px',
+                right: '-20px',
+                width: '120px',
+                height: '120px',
+                background: `radial-gradient(circle, rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.1) 0%, rgba(255,255,255,0) 70%)`,
+                borderRadius: '50%',
+                zIndex: '0',
+                transition: 'all 0.5s ease'
+              }}></div>
+              <div style={{
+                fontSize:'42px', 
+                marginBottom:'16px',
+                background: `linear-gradient(135deg, ${stat.color} 0%, rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.7) 100%)`,
+                width: '80px',
+                height: '80px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderRadius: '50%',
-                margin: '0 auto 16px',
-                border: '1px solid rgba(var(--brand-rgb), 0.1)'
-              }}>{stat.icon}</div>
-              <div style={{
-                fontSize:'clamp(28px, 3vw, 36px)', 
-                fontWeight:'700', 
-                color:'var(--brand)',
-                marginBottom: '8px',
+                borderRadius: '24px',
+                margin: '0 auto 20px',
+                boxShadow: `0 10px 20px rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.2)`,
+                color: 'white',
+                transform: 'rotate(0deg)',
+                transition: 'all 0.5s ease',
                 position: 'relative',
-                display: 'inline-block'
-              }}>
+                zIndex: '1'
+              }}
+              className="achievement-icon"
+              >{stat.icon}</div>
+              <div style={{
+                fontSize:'clamp(32px, 3.5vw, 42px)', 
+                fontWeight:'800', 
+                background: `linear-gradient(to right, ${stat.color}, rgba(${stat.color.replace('#', '').match(/../g).map(h => parseInt(h, 16)).join(',')}, 0.7))`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                marginBottom: '10px',
+                position: 'relative',
+                display: 'inline-block',
+                textShadow: '0 2px 10px rgba(0,0,0,0.05)',
+                transition: 'all 0.3s ease',
+                zIndex: '1'
+              }}
+              className="achievement-number"
+              >
                 {stat.number}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '-4px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  height: '3px',
-                  width: '40%',
-                  background: 'rgba(var(--brand-rgb), 0.2)',
-                  borderRadius: '2px'
-                }}></div>
               </div>
               <div style={{
-                fontSize:'15px', 
-                fontWeight: '500',
-                color:'var(--muted)',
-                marginTop: '8px'
+                fontSize:'16px', 
+                fontWeight: '600',
+                color:'var(--text)',
+                marginTop: '10px',
+                position: 'relative',
+                zIndex: '1',
+                transition: 'all 0.3s ease',
+                padding: '0 10px'
               }}>{stat.label}</div>
+              <div style={{
+                position: 'absolute',
+                bottom: '0',
+                left: '0',
+                width: '100%',
+                height: '5px',
+                background: stat.color,
+                transform: 'scaleX(0)',
+                transformOrigin: 'left',
+                transition: 'transform 0.5s ease',
+                zIndex: '0'
+              }}
+              className="achievement-underline"
+              ></div>
             </div>
           ))}
         </div>
+        <style jsx>{`
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
+          div:hover .achievement-icon {
+            transform: rotate(10deg) scale(1.05);
+          }
+          
+          div:hover .achievement-number {
+            transform: scale(1.1);
+          }
+          
+          div:hover .achievement-underline {
+            transform: scaleX(1);
+          }
+        `}</style>
       </section>
     </div>
   )
