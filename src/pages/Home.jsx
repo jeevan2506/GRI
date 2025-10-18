@@ -108,10 +108,68 @@ export default function Home(){
             {number:'5+', label:'Implemented Solutions', icon:'✅'},
             {number:'1000+', label:'Community Interactions', icon:'🤝'}
           ].map((stat, i) => (
-            <div key={i} style={{background:'white', padding:'24px', borderRadius:'10px', textAlign:'center', boxShadow:'0 4px 15px rgba(0,0,0,0.05)', border:'1px solid var(--border)', transition:'transform 0.3s ease'}}>
-              <div style={{fontSize:'24px', marginBottom:'8px'}}>{stat.icon}</div>
-              <div style={{fontSize:'clamp(24px, 2.5vw, 32px)', fontWeight:'700', color:'var(--brand)'}}>{stat.number}</div>
-              <div style={{fontSize:'14px', color:'var(--muted)'}}>{stat.label}</div>
+            <div key={i} style={{
+              background:'linear-gradient(135deg, white 0%, #f8f9fa 100%)', 
+              padding:'28px', 
+              borderRadius:'12px', 
+              textAlign:'center', 
+              boxShadow:'0 8px 20px rgba(0,0,0,0.08)', 
+              border:'1px solid var(--border)', 
+              transition:'all 0.4s ease',
+              transform: 'translateY(0)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.12)';
+              e.currentTarget.style.borderColor = 'rgba(var(--brand-rgb), 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
+              e.currentTarget.style.borderColor = 'var(--border)';
+            }}
+            >
+              <div style={{
+                fontSize:'36px', 
+                marginBottom:'12px',
+                background: 'rgba(var(--brand-rgb), 0.05)',
+                width: '70px',
+                height: '70px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                margin: '0 auto 16px',
+                border: '1px solid rgba(var(--brand-rgb), 0.1)'
+              }}>{stat.icon}</div>
+              <div style={{
+                fontSize:'clamp(28px, 3vw, 36px)', 
+                fontWeight:'700', 
+                color:'var(--brand)',
+                marginBottom: '8px',
+                position: 'relative',
+                display: 'inline-block'
+              }}>
+                {stat.number}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '-4px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  height: '3px',
+                  width: '40%',
+                  background: 'rgba(var(--brand-rgb), 0.2)',
+                  borderRadius: '2px'
+                }}></div>
+              </div>
+              <div style={{
+                fontSize:'15px', 
+                fontWeight: '500',
+                color:'var(--muted)',
+                marginTop: '8px'
+              }}>{stat.label}</div>
             </div>
           ))}
         </div>

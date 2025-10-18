@@ -8,14 +8,31 @@ export default function FieldVisit() {
   const [futureVisits, setFutureVisits] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Past visit you want to show
+  // Past visits from the GRI Visit Report
   const pastVisits = [
     {
       title: "Devarakaggalahalli Village Visit",
-      date: "2025-09-27",
+      date: "2023-09-15",
       location: "Devarakaggalahalli, Karnataka",
-      description: "We explored Raggi cultivation, Silk Worms production, and Flower production practices.",
-      image: "homeImages.IMG_1654" 
+      description: "Our team explored local agricultural practices including Ragi cultivation, silk worm production, and flower cultivation. We engaged with farmers to understand traditional farming techniques and challenges faced by the community.",
+      image: homeImages[4].src,
+      highlights: [
+        "Documented traditional Ragi cultivation methods",
+        "Studied silk worm rearing practices",
+        "Analyzed local flower production supply chain"
+      ]
+    },
+    {
+      title: "Rural Innovation Workshop",
+      date: "2023-10-22",
+      location: "Jain University Rural Campus",
+      description: "A collaborative workshop with community members to identify key challenges and co-create potential solutions using frugal innovation approaches. Students and faculty worked alongside village representatives.",
+      image: homeImages[2].src,
+      highlights: [
+        "Identified 8 key rural challenges",
+        "Formed 5 student-community innovation teams",
+        "Developed 3 prototype solutions"
+      ]
     }
   ];
 
@@ -134,7 +151,7 @@ export default function FieldVisit() {
           textAlign: 'center',
           fontSize: '28px',
           marginBottom: '30px',
-          borderBottom: '2px solid var(--primary)',
+          borderBottom: '2px solid var(--brand)',
           display: 'inline-block',
           paddingBottom: '10px'
         }}>
@@ -143,39 +160,76 @@ export default function FieldVisit() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
           gap: '30px',
           margin: '0 auto',
           maxWidth: '1200px'
         }}>
           {pastVisits.map((visit, index) => (
             <div key={index} style={{
-              background: 'white',
-              borderRadius: '10px',
-              boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
-              overflow: 'hidden'
+              background: 'linear-gradient(135deg, white 0%, #f8f9fa 100%)',
+              borderRadius: '12px',
+              boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
+              overflow: 'hidden',
+              border: '1px solid var(--border)',
+              transition: 'all 0.4s ease',
+              transform: 'translateY(0)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.12)';
+              e.currentTarget.style.borderColor = 'rgba(var(--brand-rgb), 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
+              e.currentTarget.style.borderColor = 'var(--border)';
             }}>
               <div style={{
-                height: '180px',
+                height: '200px',
                 backgroundImage: `url(${visit.image})`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }} />
+                backgroundPosition: 'center',
+                position: 'relative'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  bottom: '0',
+                  left: '0',
+                  right: '0',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
+                  padding: '20px 15px 10px',
+                  color: 'white'
+                }}>
+                  <h4 style={{fontSize: '20px', marginBottom: '5px'}}>{visit.title}</h4>
+                  <div style={{fontSize: '14px', opacity: '0.9'}}>{new Date(visit.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}</div>
+                </div>
+              </div>
               <div style={{ padding: '20px' }}>
                 <div style={{
-                  background: 'gray',
-                  color: 'white',
+                  display: 'inline-block',
+                  background: 'rgba(var(--brand-rgb), 0.1)',
+                  color: 'var(--brand)',
                   padding: '5px 10px',
                   borderRadius: '4px',
                   fontSize: '14px',
-                  marginBottom: '10px',
-                  display: 'inline-block'
+                  marginBottom: '12px',
+                  fontWeight: '500'
                 }}>
-                  {new Date(visit.date).toLocaleDateString()}
+                  <span style={{marginRight: '5px'}}>📍</span> {visit.location}
                 </div>
-                <h4>{visit.title}</h4>
-                <p><strong>Location:</strong> {visit.location}</p>
-                <p>{visit.description}</p>
+                <p style={{fontSize: '15px', lineHeight: '1.6', marginBottom: '15px'}}>{visit.description}</p>
+                
+                {visit.highlights && (
+                  <div style={{marginTop: '15px'}}>
+                    <h5 style={{fontSize: '16px', marginBottom: '10px', color: 'var(--brand)'}}>Key Highlights:</h5>
+                    <ul style={{paddingLeft: '20px', margin: '0'}}>
+                      {visit.highlights.map((highlight, i) => (
+                        <li key={i} style={{marginBottom: '5px', fontSize: '14px'}}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           ))}
