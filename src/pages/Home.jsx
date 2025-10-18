@@ -12,7 +12,7 @@ export default function Home(){
       <section className="hero">
         <div>
           <div className="hero-tag">GRI • Jain University</div>
-          <h1>Grassroot Research and Innovation for Rural Impact</h1>
+          <h1>Grassroots Research and Innovation for Rural Impact</h1>
           <p>
             We partner with rural communities to co-create sustainable solutions through research,
             student engagement, and frugal innovation. Explore our activities, projects, and impact.
@@ -40,7 +40,7 @@ export default function Home(){
         <div className="card about-card" style={{padding:'30px', background:'linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%)', border:'1px solid var(--border)', animation:'fadeInUp 0.6s ease-out 0.4s both', borderRadius:'12px', boxShadow:'0 4px 20px rgba(0,0,0,0.05)'}}>
           <div style={{display:'flex', flexDirection:'column', gap:'20px'}}>
             <p style={{fontSize:'clamp(16px, 1.4vw, 18px)', lineHeight:'1.6', color:'var(--text)', margin:0, maxWidth:'800px'}}>
-              <span style={{fontSize:'clamp(20px, 1.8vw, 22px)', fontWeight:'600', color:'var(--brand)', display:'block', marginBottom:'10px'}}>Grassroot Innovation (GRI)</span> 
+              <span style={{fontSize:'clamp(20px, 1.8vw, 22px)', fontWeight:'600', color:'var(--brand)', display:'block', marginBottom:'10px'}}>Grassroots Research and Innovation (GRI)</span> 
               at Jain University serves as a vital platform that integrates academic research with valuable insights from rural communities. This initiative emphasizes the development of sustainable and cost-effective solutions tailored to address specific local challenges.
             </p>
             
