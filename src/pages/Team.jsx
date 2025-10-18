@@ -11,6 +11,7 @@ export default function Team(){
   ];
 
   const honourableMembers = [
+    
     { name: 'Dr. K. Elangovan ', role: 'Assistant Innovation Director, Innovation Cell Ministry of Education', image: '/src/assets/chair1.jpg' },
     { name: 'Dr. Gurubalan Annadurai ', role: 'Assistant Professor, Department of Energy Science and Engineering(IIT Bombay)', image: '/src/assets/chair2.png' },
     { name: 'Mr. K. S. Rajamanokar ', role: 'CEO of Aquaconnect, Chennai', image: '/src/assets/chair3.jpg' },
