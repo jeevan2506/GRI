@@ -18,8 +18,8 @@ export default function Gallery(){
       <div className="section-heading" style={{textAlign: 'center', marginBottom: '40px'}}>
         <div>
           <small style={{color:'var(--muted)', fontSize: '14px', textTransform: 'uppercase', letterSpacing: '1px'}}>Visual Stories</small>
-          <h2 style={{margin: '8px 0 16px', fontSize: 'clamp(28px, 4vw, 42px)'}}>Our Gallery</h2>
-          <p style={{color: 'var(--muted)', maxWidth: '600px', margin: '0 auto', fontSize: '16px', lineHeight: '1.6'}}>Explore moments from our grassroot innovation journey, showcasing community engagement, student projects, and rural impact initiatives.</p>
+          <h2 style={{margin: '8px 0 16px', fontSize: 'clamp(28px, 4vw, 42px)', textAlign: 'center'}}>Our Gallery</h2>
+          <p style={{color: 'var(--muted)', maxWidth: '600px', margin: '0 auto', fontSize: '16px', lineHeight: '1.6', textAlign: 'center'}}>Explore moments from our grassroot innovation journey, showcasing community engagement, student projects, and rural impact initiatives.</p>
         </div>
       </div>
 

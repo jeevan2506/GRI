@@ -69,21 +69,18 @@ export default function Home(){
         </div>
         <div className="card-grid">
           {[
-            {t:'Field Immersions', d:'Community visits and need finding across rural clusters to identify authentic local challenges.', icon: '🔍'},
-            {t:'Workshops', d:'Capacity building, design thinking, and frugal innovation sessions to develop practical skills.', icon: '🛠️'},
-            {t:'Prototyping', d:'Rapid prototyping and low-cost solution development with direct community feedback.', icon: '💡'},
+            {t:'Field Immersions', d:'Community visits and need finding across rural clusters to identify authentic local challenges.'},
+            {t:'Workshops', d:'Capacity building, design thinking, and frugal innovation sessions to develop practical skills.'},
+            {t:'Prototyping', d:'Rapid prototyping and low-cost solution development with direct community feedback.'},
           ].map((c,i)=> (
             <article className="card" key={i} style={{transition:'transform 0.3s ease'}}>
               <div style={{position:'relative', overflow:'hidden'}}>
-                <img 
-                  src={homeImages[i % homeImages.length].src} 
+                <img
+                  src={homeImages[i % homeImages.length].src}
                   alt={homeImages[i % homeImages.length].caption}
                   loading="lazy"
                   style={{maxWidth:'100%', height:'auto', transition:'transform 0.5s ease'}}
                 />
-                <div style={{position:'absolute', top:'10px', right:'10px', background:'var(--brand)', color:'white', width:'36px', height:'36px', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'18px'}}>
-                  {c.icon}
-                </div>
               </div>
               <div className="body">
                 <h3>{c.t}</h3>

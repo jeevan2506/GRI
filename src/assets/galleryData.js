@@ -16,17 +16,17 @@ export const homeImages = [
   },
   {
     src: IMG_0537,
-    caption: 'Workshop on frugal innovation',
+    caption: 'Meetup with Experts',
     category: 'Workshop'
   },
   {
     src: IMG_4082,
-    caption: 'Community co-design session',
+    caption: 'Community discussion session',
     category: 'Community'
   },
   {
     src: IMG_1654,
-    caption: 'Rural prototype testing',
+    caption: 'Inagruation of GRI Centre',
     category: 'Innovation'
   }
 ]
