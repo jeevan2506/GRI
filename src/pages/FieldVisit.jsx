@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { database } from '../firebase/config';
-import { ref, onValue } from 'firebase/database';
 import { homeImages } from '../assets/galleryData';
 import { Link } from 'react-router-dom';
 
@@ -24,23 +22,13 @@ export const pastVisits = [
 export default function FieldVisit() {
   const [futureVisits, setFutureVisits] = useState([]);
 
+  // Since Firebase is removed, we'll use static data for now
   useEffect(() => {
-    const visitsRef = ref(database, 'fieldVisits');
-
-    onValue(visitsRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const visits = Object.values(data);
-        const currentDate = new Date();
-
-        const future = visits.filter(visit => new Date(visit.date) >= currentDate)
-          .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-        setFutureVisits(future);
-      }
-    }, {
-      onlyOnce: true
-    });
+    // Static future visits data (can be updated manually)
+    const staticFutureVisits = [
+      // Add future visits here if needed
+    ];
+    setFutureVisits(staticFutureVisits);
   }, []);
 
   return (

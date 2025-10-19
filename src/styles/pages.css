@@ -305,6 +305,18 @@
   font-size: 16px;
 }
 
+/* Single card layout for sections with one person */
+.single-card {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.single-card .honourable-card {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
 /* Mobile Responsive for Team */
 @media (max-width: 768px) {
   .faculty-grid, .honourable-grid {
@@ -331,6 +343,19 @@
 
   .faculty-content p, .honourable-content p {
     font-size: 14px;
+  }
+
+  .single-member .honourable-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .single-member h4 {
+    font-size: 20px;
+  }
+
+  .single-member p {
+    font-size: 16px;
   }
 }
 
@@ -359,6 +384,19 @@
 
   .faculty-content p, .honourable-content p {
     font-size: 13px;
+  }
+
+  .single-member .honourable-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .single-member h4 {
+    font-size: 18px;
+  }
+
+  .single-member p {
+    font-size: 14px;
   }
 }
 

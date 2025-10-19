@@ -14,14 +14,22 @@ export default function Team(){
     { name: 'Ms. Savitha R', role: 'Assistant Professor EEE', image: '/assets/faculty-4.jpg'},
     ];
 
-  const honourableMembers = [
+  const honoraryChair = [
+    { name: 'Prof. Anjula Gurtoo', role: 'Honorary chair of GRI and Professor & Chair, Lab for Sustainable Solutions Department of Management Studies, Indian Institute of Science, Bangalore', image: chair4 }
+  ];
 
-    { name: 'Prof. Anjula Gurtoo', role: 'Honorary chair of GRI and Professor & Chair, Lab for Sustainable Solutions Department of Management Studies, Indian Institute of Science, Bangalore', image: chair4 },
+  const chairMember = [
+    { name: 'Dr.M. Arul Prakasajothi', role: 'Chair Member and Director – Innovation, JAIN University', image: arulsir }
+  ];
+
+  const coChairMember = [
+    { name: 'Dr.N. Beemkumar', role: 'Co-Chair Member and Deputy Dean (Research), JAIN University', image: beemsir }
+  ];
+
+  const honoraryMembers = [
     { name: 'Dr. K. Elangovan ', role: 'Honorary Member of GRI and Assistant Innovation Director, Innovation Cell Ministry of Education', image: chair1 },
     { name: 'Dr. Gurubalan Annadurai ', role: 'Honorary Member of GRI and Assistant Professor, Department of Energy Science and Engineering(IIT Bombay)', image: chair2 },
-    { name: 'Mr. K. S. Rajamanokar ', role: 'Honorary Member of GRI and CEO of Aquaconnect, Chennai', image: chair3 },
-    { name: 'Dr.M. Arul Prakasajothi', role: 'Chair Member and Director – Innovation, JAIN University', image: arulsir },
-    { name: 'Dr.N. Beemkumar', role: 'Co-Chair Member and Deputy Dean (Research), JAIN University', image: beemsir },
+    { name: 'Mr. K. S. Rajamanokar ', role: 'Honorary Member of GRI and CEO of Aquaconnect, Chennai', image: chair3 }
   ];
 
 
@@ -37,10 +45,32 @@ export default function Team(){
 
       {/* Honourable Members Section */}
       <div className="honourable-section">
-        <h3>Our Mentors</h3>
+        {/* Honorary chair */}
+        <h3 style={{textAlign: 'center'}}>Honorary chair</h3>
+        <div className="single-card">
+          <div className="honourable-card">
+            <div className="honourable-color-bar"></div>
+            <div className="honourable-content">
+              <div className="honourable-avatar">
+                <img
+                  src={honoraryChair[0].image}
+                  alt={honoraryChair[0].name}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = `<span style="font-size: 28px; font-weight: bold; color: var(--brand);">${honoraryChair[0].name.charAt(0)}</span>`;
+                  }}
+                />
+              </div>
+              <h4 style={{textAlign: 'center'}}>{honoraryChair[0].name}</h4>
+              <p style={{textAlign: 'center'}}>{honoraryChair[0].role}</p>
+            </div>
+          </div>
+        </div>
 
+        {/* Honorary members */}
+        <h3>Honorary members</h3>
         <div className="honourable-grid">
-          {honourableMembers.map((member, index) => (
+          {honoraryMembers.map((member, index) => (
             <div key={index} className="honourable-card">
               <div className="honourable-color-bar"></div>
               <div className="honourable-content">
@@ -59,6 +89,50 @@ export default function Team(){
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Chair */}
+        <h3 style={{textAlign: 'center'}}>Chair Member</h3>
+        <div className="single-card">
+          <div className="honourable-card">
+            <div className="honourable-color-bar"></div>
+            <div className="honourable-content">
+              <div className="honourable-avatar">
+                <img
+                  src={chairMember[0].image}
+                  alt={chairMember[0].name}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = `<span style="font-size: 28px; font-weight: bold; color: var(--brand);">${chairMember[0].name.charAt(0)}</span>`;
+                  }}
+                />
+              </div>
+              <h4 style={{textAlign: 'center'}}>{chairMember[0].name}</h4>
+              <p style={{textAlign: 'center'}}>{chairMember[0].role}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Co-chair members */}
+        <h3 style={{textAlign: 'center'}}>Co-chair members</h3>
+        <div className="single-card">
+          <div className="honourable-card">
+            <div className="honourable-color-bar"></div>
+            <div className="honourable-content">
+              <div className="honourable-avatar">
+                <img
+                  src={coChairMember[0].image}
+                  alt={coChairMember[0].name}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = `<span style="font-size: 28px; font-weight: bold; color: var(--brand);">${coChairMember[0].name.charAt(0)}</span>`;
+                  }}
+                />
+              </div>
+              <h4 style={{textAlign: 'center'}}>{coChairMember[0].name}</h4>
+              <p style={{textAlign: 'center'}}>{coChairMember[0].role}</p>
+            </div>
+          </div>
         </div>
       </div>
 
