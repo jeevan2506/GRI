@@ -1,9 +1,9 @@
-# TODO: Implement User Login Page with Navbar Integration
+# TODO: Implement Profile Icon with Login/Logout Options
 
-## Tasks
-- [x] Add "Login" link to desktop navbar before AddToHomeScreen
-- [x] Add "Login" link to mobile navbar before AddToHomeScreen
-- [x] Add "/login" route to render UserLogin component
-- [x] Test login functionality and home redirection
-- [x] Verify site accessibility without login
-- [x] Ensure responsive design on mobile
+## Tasks to Complete
+
+- [ ] Create `src/components/ProfileIcon.jsx` component with user icon and dropdown menu
+- [ ] Update `src/App.jsx` to replace "Login" NavLink with ProfileIcon component in desktop and mobile menus
+- [ ] Add CSS styles for profile icon and dropdown in `src/styles/components.css`
+- [ ] Test login and logout functionality
+- [ ] Verify mobile responsiveness of the profile icon

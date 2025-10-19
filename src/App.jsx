@@ -18,6 +18,7 @@ import UserLogin from './pages/UserLogin'
 import PageTransition from './shared/PageTransition'
 import SectionHeading from './shared/SectionHeading'
 import NotificationIcon from './components/NotificationIcon'
+import ProfileIcon from './components/ProfileIcon'
 import AddToHomeScreen from './components/AddToHomeScreen'
 import { NotificationProvider } from './context/NotificationContext'
 import logo from 'src/assets/logo.jpeg'
@@ -58,7 +59,7 @@ function Navbar(){
           <div className="notification-container">
             <NotificationIcon />
           </div>
-          <NavLink to="/login">Login</NavLink>
+          <ProfileIcon />
           <AddToHomeScreen />
         </div>
 
@@ -82,7 +83,7 @@ function Navbar(){
             <NavLink to="/field-visit" onClick={closeMobileMenu}>Field Visits</NavLink>
             <NavLink to="/participate" onClick={closeMobileMenu}>Participate</NavLink>
             <NavLink to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
-            <NavLink to="/login" onClick={closeMobileMenu}>Login</NavLink>
+            <ProfileIcon />
             <div className="mobile-add-to-home-wrapper">
               <AddToHomeScreen />
             </div>
