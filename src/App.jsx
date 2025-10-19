@@ -65,9 +65,13 @@ function Navbar(){
 
         {/* Mobile Menu Toggle */}
         <div className="mobile-nav-right">
-          <div className="notification-container mobile-navbar-notification">
-            <ProfileIcon />
-            <NotificationIcon />
+          <div className="mobile-navbar-notification">
+            <div className="profile-container">
+              <ProfileIcon />
+            </div>
+            <div className="notification-container">
+              <NotificationIcon />
+            </div>
           </div>
           <button className="mobile-menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle mobile menu">
             {isMobileMenuOpen ? <FiX /> : <FiMenu />}
