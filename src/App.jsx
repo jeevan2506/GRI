@@ -21,7 +21,7 @@ import NotificationIcon from './components/NotificationIcon'
 import ProfileIcon from './components/ProfileIcon'
 import AddToHomeScreen from './components/AddToHomeScreen'
 import { NotificationProvider } from './context/NotificationContext'
-import logo from 'src/assets/logo.jpeg'
+import logo from './assets/logo.jpeg'
 import jgiLogo from './assets/jgi_logo.png'
 import './styles/notifications.css'
 
