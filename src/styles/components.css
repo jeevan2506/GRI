@@ -35,6 +35,12 @@
   gap: 8px;
 }
 
+.mobile-navbar-notification {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* Mobile Menu Toggle */
 .mobile-menu-toggle{
   display: none;
