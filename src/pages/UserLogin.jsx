@@ -50,7 +50,7 @@ const UserLogin = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div className="logo-animation" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <img src="./assets/logo.jpeg" alt="GRI Logo" className="login-logo" />
+            <img src="../assets/logo.jpeg" alt="GRI Logo" className="login-logo" />
           </div>
           <h2>Welcome Back</h2>
           <p>Sign in to access your account</p>
