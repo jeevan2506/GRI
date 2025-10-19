@@ -67,6 +67,7 @@ function Navbar(){
         <div className="mobile-nav-right">
           <div className="notification-container mobile-navbar-notification">
             <NotificationIcon />
+            <ProfileIcon />
           </div>
           <button className="mobile-menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle mobile menu">
             {isMobileMenuOpen ? <FiX /> : <FiMenu />}
