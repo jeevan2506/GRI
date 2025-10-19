@@ -49,20 +49,8 @@ const UserLogin = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <div className="logo-animation">
-            <motion.div
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <img src="/logo.jpeg" alt="GRI Logo" className="login-logo" />
-            </motion.div>
+          <div className="logo-animation" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <img src="src/assets/logo.jpeg" alt="GRI Logo" className="login-logo" />
           </div>
           <h2>Welcome Back</h2>
           <p>Sign in to access your account</p>

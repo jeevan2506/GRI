@@ -41,7 +41,7 @@ function Navbar(){
         <NavLink to="/" className="brand" onClick={closeMobileMenu}>
           <img src={jgiLogo} alt="JGI Logo" className="logo jgi-logo" />
           <img src={logo} alt="GRI Logo" className="logo gri-logo" />
-          <div className="brand-text">
+          <div className="brand-text" style={{ marginRight: '20px' }}>
             <span className="brand-mark">GRI</span>
             <span className="brand-name">Grassroot Research and Innovation</span>
           </div>
@@ -49,15 +49,16 @@ function Navbar(){
         
         {/* Desktop Navigation */}
         <div className="links desktop-links">
-          <NavLink to="/activities">Activities</NavLink>
+          <NavLink to="/activities" style={{ marginRight: '10px' }}>Activities</NavLink>
           <NavLink to="/gallery">Gallery</NavLink>
           <NavLink to="/team">Team</NavLink>
-          <NavLink to="/field-visit">Field Visits</NavLink>
+          <NavLink to="/field-visit">Visits</NavLink>
           <NavLink to="/participate">Participate</NavLink>
           <NavLink to="/contact">Contact</NavLink>
           <div className="notification-container">
             <NotificationIcon />
           </div>
+          <NavLink to="/login">Login</NavLink>
           <AddToHomeScreen />
         </div>
 
@@ -81,6 +82,7 @@ function Navbar(){
             <NavLink to="/field-visit" onClick={closeMobileMenu}>Field Visits</NavLink>
             <NavLink to="/participate" onClick={closeMobileMenu}>Participate</NavLink>
             <NavLink to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
+            <NavLink to="/login" onClick={closeMobileMenu}>Login</NavLink>
             <div className="mobile-add-to-home-wrapper">
               <AddToHomeScreen />
             </div>
@@ -154,6 +156,7 @@ export default function App(){
           <Route path="field-visit" element={<PageTransition><FieldVisit/></PageTransition>} />
           <Route path="fieldvisit/:id" element={<PageTransition><FieldVisitDetail/></PageTransition>} />
           <Route path="contact" element={<PageTransition><Contact/></PageTransition>} />
+          <Route path="login" element={<PageTransition><UserLogin/></PageTransition>} />
           {/* Admin routes - hidden from normal navigation */}
           <Route path="admin" element={<AdminLogin />} />
           <Route path="admin/dashboard" element={<AdminDashboard />} />
