@@ -13,6 +13,7 @@ import FieldVisit from './pages/FieldVisit'
 import FieldVisitDetail from './pages/FieldVisitDetail'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
+import UserLogin from './pages/UserLogin'
 
 import PageTransition from './shared/PageTransition'
 import SectionHeading from './shared/SectionHeading'
