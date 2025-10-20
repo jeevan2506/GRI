@@ -11,7 +11,6 @@ import Contact from './pages/Contact'
 import Participate from './pages/Participate'
 import FieldVisit from './pages/FieldVisit'
 import FieldVisitDetail from './pages/FieldVisitDetail'
-import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
 import UserLogin from './pages/UserLogin'
 
@@ -162,9 +161,8 @@ export default function App(){
           <Route path="fieldvisit/:id" element={<PageTransition><FieldVisitDetail/></PageTransition>} />
           <Route path="contact" element={<PageTransition><Contact/></PageTransition>} />
           <Route path="login" element={<PageTransition><UserLogin/></PageTransition>} />
-          {/* Admin routes - hidden from normal navigation */}
-          <Route path="admin" element={<AdminLogin />} />
-          <Route path="admin/dashboard" element={<AdminDashboard />} />
+          {/* Admin routes - both admin and user login through /login page */}
+          <Route path="admin" element={<AdminDashboard />} />
         </Routes>
       </AnimatePresence>
       <Footer />

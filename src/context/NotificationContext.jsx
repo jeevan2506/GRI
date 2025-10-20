@@ -1,4 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { collection, getDocs, query, where, onSnapshot } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { auth } from '../config/firebase';
 
 // Create the notification context
 export const NotificationContext = createContext();
@@ -11,17 +14,45 @@ export const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   
-  // Load notifications from localStorage on component mount
+  // Load notifications from Firestore on component mount with real-time listening
   useEffect(() => {
-    const storedNotifications = localStorage.getItem('notifications');
-    if (storedNotifications) {
-      const parsedNotifications = JSON.parse(storedNotifications);
-      setNotifications(parsedNotifications);
-      
-      // Count unread notifications
-      const unread = parsedNotifications.filter(notification => !notification.read).length;
-      setUnreadCount(unread);
-    }
+    const setupRealtimeListener = () => {
+      try {
+        const notificationsCollection = collection(db, 'notifications');
+        
+        // Set up real-time listener
+        const unsubscribe = onSnapshot(notificationsCollection, (snapshot) => {
+          const firestoreNotifications = snapshot.docs.map(doc => ({
+            id: doc.id,
+            read: false,
+            ...doc.data(),
+            timestamp: doc.data().createdAt?.toDate?.().toISOString() || doc.data().createdAt
+          }));
+          
+          // Sort by newest first
+          firestoreNotifications.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+          
+          setNotifications(firestoreNotifications);
+          
+          // Count unread notifications
+          const unread = firestoreNotifications.filter(notification => !notification.read).length;
+          setUnreadCount(unread);
+        });
+        
+        return unsubscribe;
+      } catch (error) {
+        console.error('Error setting up notifications listener:', error);
+        return null;
+      }
+    };
+    
+    const unsubscribe = setupRealtimeListener();
+    
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
   }, []);
   
   // Save notifications to localStorage whenever they change

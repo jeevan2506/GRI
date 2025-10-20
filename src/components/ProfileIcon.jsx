@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FiUser, FiLogOut, FiLogIn } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const ProfileIcon = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // Check authentication status on component mount and when localStorage changes
+  // Check authentication status on component mount and when route changes
   useEffect(() => {
     const checkAuth = () => {
       const authStatus = localStorage.getItem('isUserAuthenticated') === 'true';
@@ -19,11 +20,20 @@ const ProfileIcon = () => {
 
     // Listen for storage changes (in case login/logout happens in another tab)
     window.addEventListener('storage', checkAuth);
+    
+    // Also check on every page focus/visibility change
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        checkAuth();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       window.removeEventListener('storage', checkAuth);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, []);
+  }, [location]); // Re-check whenever location changes
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -50,9 +60,11 @@ const ProfileIcon = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('isUserAuthenticated');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userRole');
     setIsAuthenticated(false);
     setIsOpen(false);
-    navigate('/');
+    navigate('/login');
   };
 
   return (

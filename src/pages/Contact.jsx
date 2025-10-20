@@ -1,6 +1,73 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../config/firebase'
 
 export default function Contact(){
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    
+    // Validation
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setSubmitStatus({ type: 'error', message: 'Please fill in all fields' })
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      // Add message to Firebase
+      await addDoc(collection(db, 'contact_us'), {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        createdAt: serverTimestamp(),
+        read: false
+      })
+
+      setSubmitStatus({ 
+        type: 'success', 
+        message: 'Message sent successfully! We will get back to you soon.' 
+      })
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      })
+
+      // Clear success message after 3 seconds
+      setTimeout(() => setSubmitStatus(null), 3000)
+    } catch (error) {
+      console.error('Error sending message:', error)
+      setSubmitStatus({ 
+        type: 'error', 
+        message: 'Failed to send message. Please try again.' 
+      })
+    }
+
+    setIsSubmitting(false)
+  }
   return (
     <div className="grid" style={{gap:32}}>
       <div className="section-heading" style={{textAlign:'center', justifyContent:'center'}}>
@@ -43,10 +110,27 @@ export default function Contact(){
       <div className="card" style={{padding:32, background:'linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%)', border:'2px solid var(--border)'}}>
         <h3 style={{fontSize:'clamp(18px, 2vw, 24px)', marginBottom:24, color:'var(--text)', textAlign:'center'}}>Send us a Message</h3>
         
-        <form onSubmit={(e) => e.preventDefault()} style={{display:'grid', gap:16, maxWidth:600, margin:'0 auto'}}>
+        {submitStatus && (
+          <div style={{
+            padding: 12,
+            marginBottom: 16,
+            borderRadius: 8,
+            backgroundColor: submitStatus.type === 'success' ? '#d4edda' : '#f8d7da',
+            color: submitStatus.type === 'success' ? '#155724' : '#721c24',
+            border: `1px solid ${submitStatus.type === 'success' ? '#c3e6cb' : '#f5c6cb'}`,
+            textAlign: 'center'
+          }}>
+            {submitStatus.message}
+          </div>
+        )}
+        
+        <form onSubmit={handleSubmit} style={{display:'grid', gap:16, maxWidth:600, margin:'0 auto'}}>
           <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:16}}>
             <input 
+              name="name"
               placeholder="Your name" 
+              value={formData.name}
+              onChange={handleChange}
               style={{
                 padding:12, 
                 borderRadius:8, 
@@ -57,8 +141,11 @@ export default function Contact(){
               }} 
             />
             <input 
+              name="email"
               placeholder="Email" 
               type="email"
+              value={formData.email}
+              onChange={handleChange}
               style={{
                 padding:12, 
                 borderRadius:8, 
@@ -71,7 +158,10 @@ export default function Contact(){
           </div>
           
           <input 
+            name="subject"
             placeholder="Subject" 
+            value={formData.subject}
+            onChange={handleChange}
             style={{
               padding:12, 
               borderRadius:8, 
@@ -83,8 +173,11 @@ export default function Contact(){
           />
           
           <textarea 
+            name="message"
             placeholder="Your message" 
             rows="5" 
+            value={formData.message}
+            onChange={handleChange}
             style={{
               padding:12, 
               borderRadius:8, 
@@ -99,14 +192,17 @@ export default function Contact(){
           <button 
             className="btn" 
             type="submit"
+            disabled={isSubmitting}
             style={{
               fontSize:'16px', 
               padding:'12px 24px',
               justifySelf:'center',
-              maxWidth:'200px'
+              maxWidth:'200px',
+              opacity: isSubmitting ? 0.6 : 1,
+              cursor: isSubmitting ? 'not-allowed' : 'pointer'
             }}
           >
-            Send Message
+            {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
         </form>
       </div>

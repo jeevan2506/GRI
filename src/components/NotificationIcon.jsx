@@ -51,10 +51,29 @@ const NotificationIcon = () => {
         className="notification-icon" 
         onClick={toggleDropdown}
         aria-label="Notifications"
+        style={{ position: 'relative' }}
       >
         <FiBell size={20} />
         {unreadCount > 0 && (
-          <span className="notification-badge">{unreadCount}</span>
+          <span className="notification-badge" style={{
+            position: 'absolute',
+            top: '-8px',
+            right: '-8px',
+            backgroundColor: '#ff4444',
+            color: 'white',
+            borderRadius: '50%',
+            width: '24px',
+            height: '24px',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '2px solid white',
+            boxShadow: '0 2px 8px rgba(255, 68, 68, 0.4)'
+          }}>
+            {unreadCount}
+          </span>
         )}
       </button>
 

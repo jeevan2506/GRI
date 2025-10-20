@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../config/firebase';
 import '../styles/login.css';
 import logo from '../assets/logo.jpeg';
 
 const UserLogin = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     // Check if already authenticated
-    if (localStorage.getItem('isUserAuthenticated')) {
+    const isAuth = localStorage.getItem('isUserAuthenticated') === 'true';
+    const userRole = localStorage.getItem('userRole')?.trim();
+    
+    if (isAuth && userRole === 'admin') {
+      navigate('/admin');
+    } else if (isAuth && userRole === 'user') {
       navigate('/');
     }
   }, [navigate]);
@@ -23,15 +32,72 @@ const UserLogin = () => {
     setIsLoading(true);
     setError('');
 
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      if (isSignUp) {
+        // Create new user account
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
-    // Simple authentication
-    if (username === 'user' && password === 'user123') {
-      localStorage.setItem('isUserAuthenticated', 'true');
-      navigate('/');
-    } else {
-      setError('Invalid username or password');
+        // Save user data to Firestore with 'user' role
+        await setDoc(doc(db, 'users', user.uid), {
+          uid: user.uid,
+          email: user.email,
+          role: 'user', // Default role for new users
+          createdAt: new Date(),
+          lastLogin: new Date(),
+        });
+
+        localStorage.setItem('isUserAuthenticated', 'true');
+        localStorage.setItem('userId', user.uid);
+        localStorage.setItem('userRole', 'user');
+        navigate('/');
+      } else {
+        // Sign in existing user
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Get user data from Firestore
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        const userData = userDoc.data();
+
+        // Update last login time in Firestore
+        await setDoc(
+          doc(db, 'users', user.uid),
+          { lastLogin: new Date() },
+          { merge: true }
+        );
+
+        localStorage.setItem('isUserAuthenticated', 'true');
+        localStorage.setItem('userId', user.uid);
+        localStorage.setItem('userRole', userData?.role || 'user');
+
+        // Redirect based on role
+        if (userData?.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/');
+        }
+      }
+    } catch (err) {
+      console.error('Login Error:', err);
+      
+      if (err.code === 'auth/user-not-found') {
+        setError('Email not found. Please sign up.');
+      } else if (err.code === 'auth/wrong-password') {
+        setError('Wrong password. Please try again.');
+      } else if (err.code === 'auth/email-already-in-use') {
+        setError('Email already exists. Please sign in.');
+      } else if (err.code === 'auth/weak-password') {
+        setError('Password should be at least 6 characters.');
+      } else if (err.code === 'auth/network-request-failed' || err.message?.includes('Connection failed')) {
+        setError('Network error. Please check your internet connection and try again.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Invalid email address. Please try again.');
+      } else if (err.code === 'auth/invalid-credential') {
+        setError('Invalid email or password. Please try again.');
+      } else {
+        setError(err.message || 'An error occurred. Please try again.');
+      }
     }
     setIsLoading(false);
   };
@@ -53,8 +119,8 @@ const UserLogin = () => {
           <div className="logo-animation" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <img src={logo} alt="GRI Logo" className="login-logo" />
           </div>
-          <h2>Welcome Back</h2>
-          <p>Sign in to access your account</p>
+          <h2>{isSignUp ? 'Create Account' : 'Login'}</h2>
+          <p>{isSignUp ? 'Create a new account' : 'Sign in to your account'}</p>
         </motion.div>
 
         {error && (
@@ -75,13 +141,14 @@ const UserLogin = () => {
           transition={{ delay: 0.4, duration: 0.5 }}
         >
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <motion.input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
+              placeholder="Enter your email"
               whileFocus={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             />
@@ -94,6 +161,7 @@ const UserLogin = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              placeholder="Enter your password"
               whileFocus={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             />
@@ -114,7 +182,7 @@ const UserLogin = () => {
                 ⟳
               </motion.div>
             ) : (
-              'Sign In'
+              isSignUp ? 'Sign Up' : 'Sign In'
             )}
           </motion.button>
         </motion.form>
@@ -125,7 +193,24 @@ const UserLogin = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
         >
-          <p>Demo credentials: user / user123</p>
+          <p>
+            {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
+            <button
+              type="button"
+              onClick={() => setIsSignUp(!isSignUp)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#007bff',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                fontSize: 'inherit',
+                fontWeight: 'bold'
+              }}
+            >
+              {isSignUp ? 'Sign In' : 'Sign Up'}
+            </button>
+          </p>
         </motion.div>
       </motion.div>
 
